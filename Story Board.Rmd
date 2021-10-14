@@ -1,0 +1,77 @@
+---
+title: "Story Board"
+output: 
+  flexdashboard::flex_dashboard:
+    storyboard: true
+
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(readr)
+library(dplyr)
+library(DT)
+library(leaflet)
+```
+
+
+### Carga de datos
+```{r}
+earthquake <- read_csv("C:/Users/MS0827/Desktop/MSc/Product Development/data/earthquakedata.csv")
+#View(earthquakedata)
+```
+
+### Datos
+```{r}
+earthquake %>%
+  filter(yr==1995) %>%
+  datatable()
+
+```
+
+### Exploracion de datos
+```{r}
+max(earthquake$Date)
+min(earthquake$Date)
+
+```
+
+***
+Dataset de los terremotos que ocurrieron en **1995** en todo el mundo.
+
+### Terremotos mayores
+```{r}
+earthquake %>%
+  filter(yr==1995, mag>6) %>%
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(lng= ~lon,
+             lat = ~lat,
+             label = ~mag)
+
+```
+
+***
+
+<h1> Mi heading 1 </h1>
+
+Los terremotos de mas de 6 grados alrededor del mundo.
+
+- Chile
+- Mexico
+- Japon
+
+$$\int_0^1 x dx=\frac{1}{2}$$
+$\int_0^1 x dx=\frac{3}{5}$
+
+
+
+
+
+
+
+
+
+
+
+

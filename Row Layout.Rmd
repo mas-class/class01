@@ -1,0 +1,44 @@
+---
+title: "Row Layout"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(ggplot2)
+library(dplyr)
+```
+
+## Column
+
+### Dataset Iris
+```{r}
+knitr::kable(iris)
+```
+
+
+## Column
+
+### Boxplot
+```{r}
+iris%>%
+  ggplot(aes(x=Species, y=Sepal.Width, color=Species))+
+  geom_boxplot()
+```
+
+### Histogram - Density
+```{r}
+iris %>%
+  ggplot(aes(x=Sepal.Width, y=..density.., fill=Species))+
+  geom_histogram()+
+  geom_density()+
+  facet_wrap(.~Species)
+```
+
+
+
+
+

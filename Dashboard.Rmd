@@ -1,0 +1,74 @@
+---
+title: "Academatica Dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(readr)
+library(dplyr)
+library(formattable)
+
+# Notas: https://fontawesome.com/
+```
+
+Importar la data
+```{r}
+stats <- read_csv("C:/Users/MS0827/Desktop/MSc/Product Development/data/academatica_video_stats.csv")
+#View(academatica_video_stats)
+```
+
+Metricas
+```{r}
+Metricas <-
+  stats %>%
+  summarise(total_like = sum(likeCount))
+  
+```
+
+
+# Pagina Metricas {data-icon=fa-ruler}
+agregar decoradores
+
+## Fila1
+
+### Columna
+
+### Columna
+
+### Columna
+
+
+## Fila2
+
+### Columna
+
+### Columna
+
+
+## Fila3
+
+### Columna
+
+
+# Pagina Data {data-icon=fa-database}
+agregar decoradores
+
+## Fila1
+
+### Total Likes
+
+```{r}
+valueBox(
+formattable::comma(Metricas$total_like, digits= 0),
+            icon="fa-thumbs-up",
+            color= "success")
+```
+
+
+### Columna
+
+
